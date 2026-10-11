@@ -7,7 +7,10 @@
 namespace spdlog_test
 {
     /* Basic usage */
-    void spdlog_test_basic_usage();
+    void spdlog_test_Basic_usage();
+
+    /* Create stdout/stderr logger object */
+    void spdlog_test_Create_stdout_stderr_logger_object();
 
 } // namespace spdlog_test
 

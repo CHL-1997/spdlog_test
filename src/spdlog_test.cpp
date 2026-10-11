@@ -1,10 +1,11 @@
 #include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog_test.h"
 
 namespace spdlog_test
 {
     /* Basic usage */
-    void spdlog_test_basic_usage()
+    void spdlog_test_Basic_usage()
     {
         spdlog::info("Welcome to spdlog!");
         spdlog::error("Some error message with arg: {}", 1);
@@ -32,6 +33,19 @@ namespace spdlog_test
         SPDLOG_DEBUG("Some debug message");
         SPDLOG_INFO("Some info message with param {}", 42);
         SPDLOG_WARN("Some warm message");
+    }
+
+    /* Create stdout/stderr logger object */
+    void spdlog_test_Create_stdout_stderr_logger_object()
+    {
+        // create a color multi-threaded logger
+        auto console = spdlog::stdout_color_mt("console");
+        auto err_logger = spdlog::stderr_color_mt("stderr");
+        spdlog::get("console")->info("loggers can be retrieved from a global registry using the spdlog::get(logger_name)");
+        spdlog::get("stderr")->trace("logger [stderr] level_1 is trace.");
+        spdlog::get("stderr")->set_level(spdlog::level::trace);
+        spdlog::get("stderr")->trace("logger [stderr] level_2 is trace.");
+        spdlog::get("console")->trace("logger [console] level_1 is trace.");
     }
 
 } // namespace spdlog_test
